@@ -1,0 +1,1 @@
+SELECT date, sourcecommonname, documentidentifier, v2tone, organizations, v2organizations FROM [gdelt-bq:gdeltv2.gkg] WHERE (organizations like '%amd inc%' OR v2organizations like '%advanced micro devices%') AND date> 20150402000000AND date<20150416000000 AND (themes like '%EPU_ECONOMY_HISTORIC%' OR themes like '%ECON_EARNINGSREPORT%');
