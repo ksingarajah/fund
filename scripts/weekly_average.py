@@ -8,7 +8,7 @@ week = datetime.timedelta(days=7)
 i = 0
 
 ## Replace csv filename for different companies
-with open('apple_sentiment.csv','rt') as csvfile:
+with open('fund/data/google/sentiment/google_sentiment.csv','rt') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         today = datetime.date(int(row['year']),int(row['month']),int(row['day']))
@@ -36,7 +36,7 @@ for week in weekly_averages:
 print('global average: '+str(total/total_count))
 
 ## Replace csv filename for different companies
-with open('apple_averages.csv', 'w', newline='') as csvfile:
+with open('fund/data/google/sentiment/google_averages.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
     writer.writerow(['Week','Average'])
