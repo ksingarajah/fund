@@ -1,3 +1,7 @@
+'''
+Move to data dir to run
+'''
+
 import csv
 import os
 
@@ -42,7 +46,7 @@ def writeSQL(row):
         f.write("WHERE (organizations like '%"+row[2]+"%'")
         if row[3]:
             f.write(" OR v2organizations like '%"+row[3]+"%'")
-        f.write(") AND date> "+row[5]+"AND date<"+row[6]+" ")
+        f.write(") AND date>"+row[5]+" AND date<"+row[6]+" ")
         if row[4]:
            f.write("AND documentidentifier like '%"+row[4]+"%' ")
         f.write("AND (themes like '%EPU_ECONOMY_HISTORIC%' OR themes like '%ECON_EARNINGSREPORT%');")
