@@ -38,7 +38,7 @@ def writeSQL(row):
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
     with open(os.path.join(dest_dir,file_name),"w") as f:
-        f.write("SELECT v2tone, date FROM[gdelt - bq:gdeltv2.gkg] ")
+        f.write("SELECT v2tone, date FROM[gdelt-bq:gdeltv2.gkg] ")
         f.write("WHERE (organizations like '%"+row[2]+"%'")
         if row[3]:
             f.write(" OR v2organizations like '%"+row[3]+"%'")
