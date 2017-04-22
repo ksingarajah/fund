@@ -19,18 +19,24 @@ def main():
 		return True
 
 	#Get tweets by query search and bound dates (feb 18 2015 - now)
-	q = '#OpenSesame'
-	tweetCriteria = got.manager.TweetCriteria().setQuerySearch(q).setSince("2015-02-18").setUntil("2017-03-31")
-	tweets = got.manager.TweetManager.getTweets(tweetCriteria)
+	qList = ['#Amazon', '#AMD', '#Facebook', '#Google', '#HP', '#IBM', '#Intel', '#Micron', '#Microsoft', '#Netflix', '#Nvidia', '#Twitter']
+	userList = ['BBCTech', 'CNETNews', 'ForbesTech', 'PulseonTech', 'technews_today', 'mashabletech', 'ReutersTech', 'technology', 'breakingbytes', 'guardiantech', 'exworld3', 'TechCrunch', 'TheNextWeb', 'recode', 'TechRepublic', 'WIRED', 'arstechnica', 'SmartPlanet']
+	for q in qList:
+		qr = []
+		for user in userList:
+			tweetCriteria = got.manager.TweetCriteria().setUsername(user).setQuerySearch(q).setSince("2015-02-18").setUntil("2017-03-31")
+			tweets = got.manager.TweetManager.getTweets(tweetCriteria)
+			for tweet in tweets:
+				qr.append(tweet)
 
-	#output filename will be the query minus the hashtag
-	filename = '{}'.format(q[1:]) + ".csv"
+		#output filename will be the query minus the hashtag
+		filename = '{}'.format(q) + ".csv"
 
-	with open(filename, 'wb') as csvfile:
-		writeController = csv.writer(csvfile)
-		for tweet in tweets:
-			if tweetOkay(tweet):
-				writeController.writerow(getTweetSentiment(tweet))
+		with open(filename, 'wb') as csvfile:
+			writeController = csv.writer(csvfile)
+			for tweet in qr:
+				if tweetOkay(tweet):
+					writeController.writerow(getTweetSentiment(tweet))
 
 	# Example 1 - Get tweets by username
 	#tweetCriteria = got.manager.TweetCriteria().setUsername('barackobama').setMaxTweets(1)
