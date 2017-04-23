@@ -1,8 +1,7 @@
 import joblib
 import os
 import pandas as pd
-import sklearn
-from sklearn import cross_validation
+from sklearn import model_selection
 from sklearn import feature_selection
 from sklearn import linear_model
 from sklearn import naive_bayes
@@ -55,7 +54,7 @@ def reg_bayesian_1w_avg(df):
     X = numpy.expand_dims(df["1w_avg"].values, axis=1)
     y = df["pxch1"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -69,7 +68,7 @@ def reg_bayesian_themes(df):
     X = df[["econ_avg","env_avg","lead_avg","legal_avg","soc_avg"]]
     y = df["pxch1"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -85,7 +84,7 @@ def reg_bayesian_themes_best(df):
     fs = feature_selection.SelectKBest(k=4)
     X_new = fs.fit_transform(X, y)
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X_new,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_new,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -99,7 +98,7 @@ def reg_bayesian_source(df):
     X = df[["source_avg"]]
     y = df["pxch1"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -113,7 +112,7 @@ def class_bayesian_1w_avg(df):
     X = df[["1w_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -129,7 +128,7 @@ def class_bayesian_themes_best(df):
     fs = feature_selection.SelectKBest(k=4)
     X_new = fs.fit_transform(X,y)
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X_new,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_new,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -143,7 +142,7 @@ def class_bayesian_themes(df):
     X = df[["econ_avg","env_avg","lead_avg","legal_avg","soc_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -157,7 +156,7 @@ def class_bayesian_econ(df):
     X = df[["econ_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -171,7 +170,7 @@ def class_bayesian_env(df):
     X = df[["env_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -185,7 +184,7 @@ def class_bayesian_lead(df):
     X = df[["lead_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -199,7 +198,7 @@ def class_bayesian_legal(df):
     X = df[["legal_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -213,7 +212,7 @@ def class_bayesian_soc(df):
     X = df[["soc_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -227,7 +226,7 @@ def class_bayesian_source(df):
     X = df[["source_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -241,7 +240,7 @@ def class_bayesian_themes_source(df):
     X = df[["econ_avg","env_avg","lead_avg","legal_avg","soc_avg","source_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -257,7 +256,7 @@ def class_bayesian_themes_source_best(df):
     fs = feature_selection.SelectKBest(k=4)
     X_new = fs.fit_transform(X, y)
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X_new,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_new,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -274,7 +273,7 @@ def class_bayesian_1w_avg_themes_source_best(df):
     X_new = fs.fit_transform(X, y)
     # print(fs.get_support())
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X_new,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X_new,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -288,7 +287,7 @@ def class_bayesian_econ_lead_source(df):
     X = df[["econ_avg","lead_avg","source_avg"]]
     y = df["sign"]
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -304,7 +303,7 @@ def class_bayesian_sans_env(df):
     # fs = feature_selection.SelectKBest(k=3)
     # X_new = fs.fit_transform(X,y)
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X,
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X,
                                                                          y, test_size=0.3, random_state=200)
     classifier.fit(X_train,y_train)
 
@@ -336,6 +335,7 @@ def main():
     list.sort(res,reverse=True,key =lambda tup: tup[1][1].split(" ")[2])
     for r in res:
         print(r)
+    print(len(res))
 
     joblib.dump(res[0][1][2],"best_model.pkl")
 if __name__ == "__main__":
